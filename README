@@ -1,9 +1,12 @@
-egit‚©‚ç‚Ìpush‚ª‚¤‚Ü‚­‚¢‚©‚È‚¢BBB
+egitã‹ã‚‰ã®pushãŒã†ã¾ãã„ã‹ãªã„ã€‚ã€‚ã€‚
 
-git bash‚©‚ç‚Ìpush‚Í
-~/.ssh/ˆÈ‰º‚ÉŒöŠJŒ®A”é–§Œ®‚ğŠi”[‚µ‚½ã‚ÅA
+git bashã‹ã‚‰ã®pushã¯
+~/.ssh/ä»¥ä¸‹ã«å…¬é–‹éµã€ç§˜å¯†éµã‚’æ ¼ç´ã—ãŸä¸Šã§ã€
 
-git remote add origin git@github.com:nkawano/attend    (‰‰ñ‚Ì‚İ)
-git push origin master       (master‚Ìì‹ÆƒŠƒ|ƒWƒgƒŠ‚ğAoriginã‹L‚Å’è‹`‚ÉApush)
+git remote add origin git@github.com:nkawano/attend    (åˆå›ã®ã¿)
+git push origin master       (masterã®ä½œæ¥­ãƒªãƒã‚¸ãƒˆãƒªã‚’ã€originä¸Šè¨˜ã§å®šç¾©ã«ã€push)
 
-ƒuƒ‰ƒ“ƒ`‚Ì‰^—p‚ÉŠÖ‚µ‚Ä‚Í’²¸B‚ ‚ñ‚Ü‚è‚æ‚­‚í‚©‚Á‚Ä‚È‚¢‚Ì‚ÅA‰½‚©—Ç‚¢ˆÄ‚ª‚ ‚Á‚½‚ç‹³‚¦‚ÄI
+ãƒ–ãƒ©ãƒ³ãƒã®é‹ç”¨ã«é–¢ã—ã¦ã¯èª¿æŸ»ã€‚ã‚ã‚“ã¾ã‚Šã‚ˆãã‚ã‹ã£ã¦ãªã„ã®ã§ã€ä½•ã‹è‰¯ã„æ¡ˆãŒã‚ã£ãŸã‚‰æ•™ãˆã¦ï¼
+
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
