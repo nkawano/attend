@@ -117,13 +117,13 @@ public class PracticeService {
         
         Calendar cal = Calendar.getInstance();
         cal.set(year, month - 1, 1);    // 1åéÇÕ0Ç…Ç»ÇÈÇÁÇµÇ¢ÅEÅEÅE
-        Date fromDate = cal.getTime();
+        Date fromDate = DateUtil.clearTimePart(cal.getTime());
         cal.add(Calendar.MONTH , 1);
-        Date toDate = cal.getTime();
+        Date toDate = DateUtil.clearTimePart(cal.getTime());
         
         return Datastore
             .query(t)
-            .filter(t.startDate.greaterThan(fromDate))
+            .filter(t.startDate.greaterThanOrEqual(fromDate))
             .filterInMemory(t.startDate.lessThan(toDate))
             .asList();
     }
