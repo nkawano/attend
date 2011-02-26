@@ -21,7 +21,7 @@ public class Member implements Serializable {
     private Long version;
 
     private String id;
-    
+
     private String password;
 
     private String firstName;
@@ -29,7 +29,7 @@ public class Member implements Serializable {
     private String lastName;
 
     private Date birthDay;
-    
+
     private String part;
 
     private String address;
@@ -41,14 +41,16 @@ public class Member implements Serializable {
     private String telNo;
 
     private String workPlace;
-    
+
+    private int authority;
+
     @Attribute(persistent = false)
     private InverseModelListRef<Attendance, Member> attendanceRef =
         new InverseModelListRef<Attendance, Member>(
             Attendance.class,
             "memberRef",
             this);
-    
+
     public String getId() {
         return id;
     }
@@ -131,7 +133,7 @@ public class Member implements Serializable {
 
     /**
      * Returns the key.
-     * 
+     *
      * @return the key
      */
     public Key getKey() {
@@ -140,7 +142,7 @@ public class Member implements Serializable {
 
     /**
      * Sets the key.
-     * 
+     *
      * @param key
      *            the key
      */
@@ -150,7 +152,7 @@ public class Member implements Serializable {
 
     /**
      * Returns the version.
-     * 
+     *
      * @return the version
      */
     public Long getVersion() {
@@ -159,7 +161,7 @@ public class Member implements Serializable {
 
     /**
      * Sets the version.
-     * 
+     *
      * @param version
      *            the version
      */
@@ -207,5 +209,13 @@ public class Member implements Serializable {
 
     public InverseModelListRef<Attendance, Member> getAttendanceRef() {
         return attendanceRef;
+    }
+
+    public void setAuthority(int authority) {
+        this.authority = authority;
+    }
+
+    public int getAuthority() {
+        return authority;
     }
 }

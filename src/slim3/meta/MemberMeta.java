@@ -1,6 +1,6 @@
 package slim3.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-02-26 22:12:09")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-02-26 23:42:08")
 /** */
 public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.Member> {
 
@@ -9,6 +9,9 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<slim3.model.Member> address2 = new org.slim3.datastore.StringAttributeMeta<slim3.model.Member>(this, "address2", "address2");
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<slim3.model.Member, java.lang.Integer> authority = new org.slim3.datastore.CoreAttributeMeta<slim3.model.Member, java.lang.Integer>(this, "authority", "authority", int.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<slim3.model.Member, java.util.Date> birthDay = new org.slim3.datastore.CoreAttributeMeta<slim3.model.Member, java.util.Date>(this, "birthDay", "birthDay", java.util.Date.class);
@@ -62,6 +65,7 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.
         slim3.model.Member model = new slim3.model.Member();
         model.setAddress((java.lang.String) entity.getProperty("address"));
         model.setAddress2((java.lang.String) entity.getProperty("address2"));
+        model.setAuthority(longToPrimitiveInt((java.lang.Long) entity.getProperty("authority")));
         model.setBirthDay((java.util.Date) entity.getProperty("birthDay"));
         model.setFirstName((java.lang.String) entity.getProperty("firstName"));
         model.setId((java.lang.String) entity.getProperty("id"));
@@ -87,6 +91,7 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.
         }
         entity.setProperty("address", m.getAddress());
         entity.setProperty("address2", m.getAddress2());
+        entity.setProperty("authority", m.getAuthority());
         entity.setProperty("birthDay", m.getBirthDay());
         entity.setProperty("firstName", m.getFirstName());
         entity.setProperty("id", m.getId());
@@ -165,6 +170,9 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.
             encoder = new org.slim3.datastore.json.Default();
             encoder.encode(writer, m.getAddress2());
         }
+        writer.setNextPropertyName("authority");
+        encoder = new org.slim3.datastore.json.Default();
+        encoder.encode(writer, m.getAuthority());
         if(m.getBirthDay() != null){
             writer.setNextPropertyName("birthDay");
             encoder = new org.slim3.datastore.json.Default();
@@ -234,6 +242,9 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<slim3.model.
         reader = rootReader.newObjectReader("address2");
         decoder = new org.slim3.datastore.json.Default();
         m.setAddress2(decoder.decode(reader, m.getAddress2()));
+        reader = rootReader.newObjectReader("authority");
+        decoder = new org.slim3.datastore.json.Default();
+        m.setAuthority(decoder.decode(reader, m.getAuthority()));
         reader = rootReader.newObjectReader("birthDay");
         decoder = new org.slim3.datastore.json.Default();
         m.setBirthDay(decoder.decode(reader, m.getBirthDay()));
