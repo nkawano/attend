@@ -7,6 +7,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="atd" uri="http://neeton.org/tags/atd"%>
 
+<%
+  response.setHeader("Expires", "-1");
+  response.setHeader("Pragma","no-cache");
+  response.setHeader("Cache-Control","no-cache");
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,8 +52,7 @@
 							<p>出席情報を入力してください</p>
 							<p><span class="error">${f:h(errors.cannotUpdate)}</span></p>
 							<form method="post" action="/attend/inputAttendance/submit" name="attendanceForm">
-							<c:forEach var="e" items="${attendanceList}" varStatus="status">
-								<test:test date="${e.practiceRef.model.startDate}" />
+							<atd:attendForEach var="e" items="${attendanceList}" varStatus="status">
 								<ul>
 									<table>
 										<c:set value="${e.attendance}" var="attendance" scope="request"/>
@@ -57,7 +61,7 @@
 										</tr>
 										<tr>
 											<atd:checkPast date="${e.practiceRef.model.startDate}" >
-												<atd:future useCount='true'>
+												<atd:future>
 													<td>
 														<select name="attendanceArray">
 															<option ${f:select("attendance", "0")}>未定</option>
@@ -68,7 +72,7 @@
 														</select>
 													</td>
 													<td>備考<input type="text" id="reasondisabled" name="racitalArray" value="${e.racital}"></input></td>
-													<td><input id="submit" type="submit" onclick="submitAttendanceForm(false, ${useCount.count});" value="更新" /></td>
+													<td><input id="submit" type="submit" onclick="submitAttendanceForm(false, ${future.idx});" value="更新" /></td>
 													<input type="hidden" name="keyArray" value="${f:h(e.key)}"/>
 													<input type="hidden" name="memberKeyArray" value="${f:h(e.memberKey) }"/>
 													<input type="hidden" name="practiceKeyArray" value="${f:h(e.practiceKey) }"/>
@@ -90,8 +94,8 @@
 										</tr>
 									</table>
 								</ul>
-							</c:forEach>
-							<c:if test="${useCount.count > 0}">
+							</atd:attendForEach>
+							<c:if test="${future.idx > 0}">
 								<input type="hidden" name="index" />
 								<input type="hidden" name="allFlg" />
 								<input type="hidden" name="currentDate" value="${currentDate}" />
