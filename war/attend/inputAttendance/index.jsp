@@ -64,11 +64,12 @@
 												<atd:future>
 													<td>
 														<select name="attendanceArray">
-															<option ${f:select("attendance", "0")}>未定</option>
-															<option ${f:select("attendance", "1")}>出席</option>
-															<option ${f:select("attendance", "2")}>欠席</option>
-															<option ${f:select("attendance", "3")}>遅刻</option>
-															<option ${f:select("attendance", "4")}>早退</option>
+															<option ${f:select("attendance", "0")}>未入力</option>
+															<option ${f:select("attendance", "1")}>未定</option>
+															<option ${f:select("attendance", "2")}>出席</option>
+															<option ${f:select("attendance", "3")}>欠席</option>
+															<option ${f:select("attendance", "4")}>遅刻</option>
+															<option ${f:select("attendance", "5")}>早退</option>
 														</select>
 													</td>
 													<td>備考<input type="text" id="reasondisabled" name="racitalArray" value="${e.racital}"></input></td>
@@ -80,11 +81,12 @@
 												<atd:past>
 													<td>
 														<select name="attendanceArray" disabled>
-															<option ${f:select("attendance", "0")}>未定</option>
-															<option ${f:select("attendance", "1")}>出席</option>
-															<option ${f:select("attendance", "2")}>欠席</option>
-															<option ${f:select("attendance", "3")}>遅刻</option>
-															<option ${f:select("attendance", "4")}>早退</option>
+															<option ${f:select("attendance", "0")}>未入力</option>
+															<option ${f:select("attendance", "1")}>未定</option>
+															<option ${f:select("attendance", "2")}>出席</option>
+															<option ${f:select("attendance", "3")}>欠席</option>
+															<option ${f:select("attendance", "4")}>遅刻</option>
+															<option ${f:select("attendance", "5")}>早退</option>
 														</select>
 													</td>
 													<td>備考<input type="text" id="reasondisabled" name="racitalArray" value="${e.racital}" disabled></input></td>
