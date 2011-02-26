@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class AuthTest extends AppEngineTestCase {
+public class MemberAuthTest extends AppEngineTestCase {
 
-    private Auth model = new Auth();
+    private MemberAuth model = new MemberAuth();
 
     @Test
     public void test() throws Exception {

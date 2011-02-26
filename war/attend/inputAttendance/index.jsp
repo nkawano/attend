@@ -53,12 +53,11 @@
 							<p><span class="error">${f:h(errors.cannotUpdate)}</span></p>
 							<form method="post" action="/attend/inputAttendance/submit" name="attendanceForm">
 							<atd:attendForEach var="e" items="${attendanceList}" varStatus="status">
+								<c:set value="${e.attendance}" var="attendance" scope="request"/>
 								<ul>
+									<li>
+									<fmt:formatDate value="${e.practiceRef.model.startDate}" pattern="MM月dd日"/> <fmt:formatDate value="${e.practiceRef.model.startDate}" pattern="HH:mm"/> - <fmt:formatDate value="${e.practiceRef.model.endDate}" pattern="HH:mm"/> ＠${f:h(e.practiceRef.model.practicePlace)}
 									<table>
-										<c:set value="${e.attendance}" var="attendance" scope="request"/>
-										<tr>
-											<fmt:formatDate value="${e.practiceRef.model.startDate}" pattern="MM月dd日"/> <fmt:formatDate value="${e.practiceRef.model.startDate}" pattern="HH:mm"/> - <fmt:formatDate value="${e.practiceRef.model.endDate}" pattern="HH:mm"/> ＠${f:h(e.practiceRef.model.practicePlace)}</li>
-										</tr>
 										<tr>
 											<atd:checkPast date="${e.practiceRef.model.startDate}" >
 												<atd:future>
@@ -72,8 +71,8 @@
 															<option ${f:select("attendance", "5")}>早退</option>
 														</select>
 													</td>
-													<td>備考<input type="text" id="reasondisabled" name="racitalArray" value="${e.racital}"></input></td>
-													<td><input id="submit" type="submit" onclick="submitAttendanceForm(false, ${future.idx});" value="更新" /></td>
+													<td>備考<input type="text" name="racitalArray" value="${e.racital}"></input></td>
+													<td><input type="submit" class="update"  onclick="submitAttendanceForm(false, ${future.idx});" value="更新" /></td>
 													<input type="hidden" name="keyArray" value="${f:h(e.key)}"/>
 													<input type="hidden" name="memberKeyArray" value="${f:h(e.memberKey) }"/>
 													<input type="hidden" name="practiceKeyArray" value="${f:h(e.practiceKey) }"/>
@@ -89,19 +88,20 @@
 															<option ${f:select("attendance", "5")}>早退</option>
 														</select>
 													</td>
-													<td>備考<input type="text" id="reasondisabled" name="racitalArray" value="${e.racital}" disabled></input></td>
+													<td>備考<input type="text" name="racitalArray" value="${e.racital}" disabled></input></td>
 													<td></td>
 												</atd:past>
 											</atd:checkPast>
 										</tr>
 									</table>
+									</li>
 								</ul>
 							</atd:attendForEach>
 							<c:if test="${future.idx > 0}">
 								<input type="hidden" name="index" />
 								<input type="hidden" name="allFlg" />
 								<input type="hidden" name="currentDate" value="${currentDate}" />
-								<input type="submit" onclick="submitAttendanceForm(true, 99);" value="一括更新" />
+								<input type="submit" class="updateAll" onclick="submitAttendanceForm(true, 99);" value="一括更新" />
 							</c:if>
 							</form>
 						</c:if>

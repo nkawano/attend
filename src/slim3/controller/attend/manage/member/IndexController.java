@@ -7,10 +7,10 @@ public class IndexController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
-        if(sessionScope("loginUser") == null) {
-            // TODO ログインしていないページに飛ばす必要がある
-            return forward("/attend/error/");
-        }
+//        if(sessionScope("loginUser") == null) {
+//             TODO ログインしていないページに飛ばす必要がある
+//            return forward("/attend/error/");
+//        }
         return forward("index.jsp");
     }
 }
