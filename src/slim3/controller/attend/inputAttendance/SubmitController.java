@@ -49,7 +49,6 @@ public class SubmitController extends Controller {
                 }
             }
             try {
-                // TODO サービスの設計について問い合わせ kawano
                 attendanceSvc.registList(attendanceList);
             } catch (IllegalArgumentException e) {
                 errors.put("cannotUpdate", "登録に失敗しました。再度登録を行ってみてください。");

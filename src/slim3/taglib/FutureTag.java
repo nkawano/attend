@@ -1,9 +1,12 @@
 package slim3.taglib;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.Tag;
+
+import slim3.taglib.AttendanceForEach.FutureIdx;
+
+//import slim3.taglib.AttendanceForEach.FutureIdx;
 
 /**
  * CheckPastDateTagで指定された日付が未来日の場合に、 本タグのボディ部を出力します。<br/>
@@ -17,13 +20,8 @@ public class FutureTag implements Tag {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String REQUEST_LABEL = "useCount";
-
     private PageContext pageContext;
     private Tag parent;
-    private boolean useCount = false;;
-    private InnerCount innerCount;
-    private ServletRequest request;
 
     public FutureTag() {
 
@@ -48,14 +46,6 @@ public class FutureTag implements Tag {
 
     public int doStartTag() throws JspException {
 
-        if (!getPageContext().getRequest().equals(request)) {
-            InnerCount obj = new InnerCount();
-            obj.count = 0;
-            setInnerCount(obj);
-            request = getPageContext().getRequest();
-            getPageContext().getRequest().setAttribute(REQUEST_LABEL, obj);
-        }
-
         CheckPastDateTag checkParent = (CheckPastDateTag) getParent();
 
         if (checkParent.isPast()) {
@@ -67,50 +57,24 @@ public class FutureTag implements Tag {
 
     public int doEndTag() throws JspException {
 
-        if (useCount) {
+        try {
             CheckPastDateTag checkParent = (CheckPastDateTag) getParent();
-            if (!checkParent.isPast()) {
-                InnerCount obj = getInnerCount();
-                obj.count++;
-                getPageContext().getRequest().setAttribute(REQUEST_LABEL, obj);
-            }
-        }
+            AttendanceForEach parentsPearent =
+                (AttendanceForEach) checkParent.getParent();
 
+            if (!checkParent.isPast()) {
+                FutureIdx fci =
+                    (FutureIdx) parentsPearent.getPageContext().getRequest().getAttribute(
+                        AttendanceForEach.FUTURE_IDX);
+                fci.setIdx(fci.getIdx() + 1);
+            }
+        } catch (ClassCastException e) {
+            new JspException("タグの使い方が間違ってます。");
+        }
         return EVAL_PAGE;
     }
 
     public void release() {
-    }
-
-    public boolean isUseCount() {
-        return useCount;
-    }
-
-    public void setUseCount(boolean useCount) {
-        this.useCount = useCount;
-    }
-
-    public InnerCount getInnerCount() {
-        return innerCount;
-    }
-
-    public void setInnerCount(InnerCount innerCount) {
-        this.innerCount = innerCount;
-    }
-
-    // カウント用内部クラス
-    public class InnerCount {
-
-        private int count;
-
-        public int getCount() {
-            return count;
-        }
-
-        public void setCount(int count) {
-            this.count = count;
-        }
-
     }
 
 }

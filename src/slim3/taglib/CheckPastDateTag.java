@@ -13,6 +13,7 @@ public class CheckPastDateTag implements Tag {
     private static final long serialVersionUID = 1L;
 
     private PageContext pageContext;
+    private Tag parent;
     private Date date;
     private boolean isPast;
 
@@ -56,10 +57,11 @@ public class CheckPastDateTag implements Tag {
     }
 
     public void setParent(Tag parent) {
+        this.parent = parent;
     }
 
     public Tag getParent() {
-        return null;
+        return this.parent;
     }
 
     public int doEndTag() throws JspException {
