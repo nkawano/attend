@@ -102,12 +102,12 @@ public class MemberAuthFilter implements Filter {
             ServletResponse res, String path) throws ServletException,
             IOException {
 
-        HttpSession session = httpReq.getSession();
+//        HttpSession session = httpReq.getSession();
 
-        @SuppressWarnings("unchecked")
-        Map<String, Integer> auth =
-            (Map<String, Integer>) session
-                .getAttribute(Constants.SESSION_KEY_LOGIN_USER_AUTH);
+//        @SuppressWarnings("unchecked")
+//        Map<String, Integer> auth =
+//            (Map<String, Integer>) session
+//                .getAttribute(Constants.SESSION_KEY_LOGIN_USER_AUTH);
 
 //        if (path.startsWith("/attend/manage/attendance")) {
 //            return false;
