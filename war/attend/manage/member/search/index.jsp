@@ -24,18 +24,16 @@
 						<h2>団員検索ページ</h2>
 						<p></p>
 						<form method="post" action="/attend/manage/member/search/search">
-						<table>
+						<table class="searchMember-searchTable">
 							<tr>
-								<td>ID(先方一致)</td> 
-								<td><input type="text" name="id" id="loginid" value="" /></td>
-							</tr>
-							<tr>
-								<td></td> 
-								<td><input type="submit" id="submit" value="検索" /></td>
+								<td>ID(先方一致)</td>
+								<td><input type="text" class="text1" name="id" value="" /></td>
+								<td><input type="submit" class="searchMember-searchbutton" value="検索" /></td>
 							</tr>
 						</table>
 						</form>
-						
+						検索結果
+						<hr/>
 						<form method="post" action="/attend/manage/member/update/">
 						<c:if test="${memberList != null}">
 						<table>
@@ -46,7 +44,7 @@
 						<td></td>
 						</tr>
 						</c:if>
-						<c:forEach var="e" items="${memberList}">	
+						<c:forEach var="e" items="${memberList}">
 						<tr>
 						<td>${f:h(e.id)}</td>
 						<td>${f:h(e.lastName)}</td>
@@ -59,11 +57,13 @@
 						<c:if test="${memberList != null}">
 						<table>
 							<tr>
-								<td><input type="submit" id="submit" name="update" value="更新" /></td>
-								<td><input type="submit" id="submit" name="delete" value="削除" /></td>
+								<td><input type="submit" class="searchMember-bottombuttons" name="update" value="更新" /></td>
+								<td><input type="submit" class="searchMember-bottombuttons" name="delete" value="削除" /></td>
+<!--								<td><input type="submit" class="searchMember-bottombuttons" name="searchAuth" value="権限参照" /></td>-->
+								<td><input type="submit" class="searchMember-bottombuttons" name="updateAuth" value="権限変更" /></td>
 								<td><span class="error">${f:h(errors.selectError)}</span></td>
 							</tr>
-						</table>	
+						</table>
 						</c:if>
 						</form>
 					</div>

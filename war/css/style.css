@@ -423,7 +423,20 @@ a:hover {
 	-webkit-border-radius: 10px; /* Safari,Chrome */
 }
 
-input[type="text"] {
+/* textボックス1全般スタイル */
+.text1 {
+	width: 150px;
+	margin: 0px 10px 0px 0px;
+	padding: 5px 0px 0px 1px;
+	border: 1px solid #DEDEDE;
+	background: #FFFFFF;
+	text-transform: lowercase;
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	color: #999999;
+}
+
+/* textボックス2全般スタイル */
+.text2 {
 	padding: 1px;
 	border: 1px solid #999999;
 	background: #FFFFFF;
@@ -432,7 +445,9 @@ input[type="text"] {
 	color: #000000;
 }
 
-input[type="text"][disabled] {
+
+/* textボックス(sidabled)全般スタイル */
+.text2-disabled {
 	padding: 1px;
 	border: 1px solid #999999;
 	background: #f5f5f5;
@@ -441,10 +456,10 @@ input[type="text"][disabled] {
 	color: #000000;
 }
 
-
+/* submitボタン全般スタイル */
 input[type="submit"] {
 
-	width: 70px;
+	width: 65px;
 	height: 22px;
 
 	border: none;
@@ -456,14 +471,38 @@ input[type="submit"] {
 	-webkit-border-radius: 10px; /* Safari,Chrome */
 }
 
-.update{
+/* 出欠登録画面 */
+/* 更新ボタン位置 */
+.attendance-update{
 	margin: 0px 30px 0px 0px;
 	float: right;
 }
 
-.updateAll{
+/* 一括更新ボタン位置 */
+.attendance-updateAll{
 	margin-top: 10px;
 }
+
+/* 団員検索画面 */
+/* 検索フォーム位置 */
+.searchMember-searchTable{
+	margin-bottom: 35px;
+}
+
+/* 更新、削除、権限ボタン位置 */
+.searchMember-bottombuttons{
+	margin: 1px 30px 1px 1px;
+	float: right;
+}
+
+/* 団員権限変更画面 */
+/* 更新ボタン位置 */
+.memberAuth-update{
+	margin-top: 5px;
+	float: right;
+}
+
+
 
 /* Footer */
 

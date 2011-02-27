@@ -19,9 +19,9 @@ public class MemberAuth implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    ModelRef<Member> memberRef;
+    ModelRef<Member> memberRef = new ModelRef<Member>(Member.class);
 
-    //oÈó‹µ
+    //oÈî•ñ
     private int attendance;
 
     //’cˆõî•ñ

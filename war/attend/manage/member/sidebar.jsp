@@ -11,7 +11,6 @@
 			<ul>
 				<li><a href="/attend/manage/member/regist/">団員登録</a></li>
 				<li><a href="/attend/manage/member/search/"">団員検索</a></li>
-				<li><a href="#">権限変更</a></li>
 			</ul>
 		</li>
 	</ul>
