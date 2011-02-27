@@ -11,7 +11,24 @@
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>練習日登録ページ</title>
+
+<script type="text/javascript" src="/js/jquery-1.5.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
 <link href="/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" media="all" type="text/css" href="/css/jquery-ui-1.8.9.custom.css" />
+
+<script type="text/javascript" charset="utf-8">
+
+
+$(function() {
+	$("#practice-date").datepicker();
+	$('#practice-date').datepicker('option',
+	{dateFormat: 'yy-mm-dd'})
+});
+
+</script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -28,42 +45,42 @@
 						<form method="post" action="./submit">
 						<table>
 							<tr>
-								<td>練習日</td> 
-								<td><input type="text" id="loginid" ${f:text("practiceDate")} /> </td> 
+								<td>練習日</td>
+								<td><input type="text" id="practice-date" class="text1" ${f:text("practiceDate")} /> </td>
 								<td><span class="error">${f:h(errors.practiceDate)}</span></td>
 							</tr>
 							<tr>
-								<td>練習開始時刻</td> 
-								<td><input type="text" id="loginid" ${f:text("startTime")} /> </td>
+								<td>練習開始時刻</td>
+								<td><input type="text" class="text1" ${f:text("startTime")} /> </td>
 								<td><span class="error">${f:h(errors.startTime)}</span></td>
 							</tr>
 							<tr>
-								<td>練習終了時刻</td> 
-								<td><input type="text" id="loginid" ${f:text("endTime")} /> </td>
+								<td>練習終了時刻</td>
+								<td><input type="text" class="text1" ${f:text("endTime")} /> </td>
 								<td><span class="error">${f:h(errors.endTime)}</span></td>
 							</tr>
 							<tr>
-								<td>練習場所</td> 
-								<td><input type="text" id="loginid" ${f:text("practicePlace")}/></td>
+								<td>練習場所</td>
+								<td><input type="text" class="text1" ${f:text("practicePlace")}/></td>
 								<td><span class="error">${f:h(errors.practicePlace)}</span></td>
 							</tr>
 							<tr>
-								<td>集合時刻</td> 
-								<td><input type="text" id="loginid" ${f:text("gatheringTime")} /> </td>
+								<td>集合時刻</td>
+								<td><input type="text" class="text1" ${f:text("gatheringTime")} /> </td>
 								<td><span class="error">${f:h(errors.gatheringTime)}</span></td>
 							</tr>
 							<tr>
-								<td>集合場所</td> 
-								<td><input type="text" id="loginid" ${f:text("gatheringPoint")}/></td>
+								<td>集合場所</td>
+								<td><input type="text" class="text1" ${f:text("gatheringPoint")}/></td>
 								<td><span class="error">${f:h(errors.gatheringPoint)}</span></td>
 							</tr>
 							<tr>
-								<td>備考</td> 
-								<td><input type="text" id="loginid" ${f:text("racital")}/></td>
+								<td>備考</td>
+								<td><input type="text" class="text1" ${f:text("racital")}/></td>
 								<td><span class="error">${f:h(errors.recital)}</span></td>
 							</tr>
 							<tr>
-								<td></td> 
+								<td></td>
 								<td><input type="submit" id="submit" value="登録" /></td>
 							</tr>
 						</table>
