@@ -51,7 +51,7 @@
     </filter-mapping>
         <filter-mapping>
         <filter-name>MemberAuthFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/attend/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
