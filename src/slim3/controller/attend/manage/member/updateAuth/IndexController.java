@@ -3,7 +3,6 @@ package slim3.controller.attend.manage.member.updateAuth;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 
-import slim3.constants.Constants;
 import slim3.model.Member;
 import slim3.model.MemberAuth;
 import slim3.service.MemberAuthService;
@@ -32,16 +31,8 @@ public class IndexController extends Controller {
         MemberAuth memberAuth =memberAuthService.searchFromMemberKey(member);
 
         if(memberAuth == null){
-            //権限エンティティがまだ存在しない場合、ここで永続化してしまう。
-            memberAuth = new MemberAuth();
-            memberAuth.setAttendance(Constants.AUTH_REFER);
-            memberAuth.setMember(Constants.AUTH_NOTHING);
-            memberAuth.setPractice(Constants.AUTH_NOTHING);
-            memberAuth.setMemberAuth(Constants.AUTH_NOTHING);
-            memberAuth.getMemberRef().setModel(member);
-
-            //キーが生成されてくるため、参照を更新
-            memberAuth = memberAuthService.regist(memberAuth);
+            //権限エンティティがまだ存在しない場合、ここで永続化してしまう。(団員登録時に登録されるはずなので、基本的にないはず。)
+            memberAuth = memberAuthService.registAsInitial(member);
         }
 
         requestScope("memberInfo", member);

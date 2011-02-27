@@ -5,6 +5,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.DateUtil;
 
+import slim3.constants.Constants;
 import slim3.meta.MemberMeta;
 import slim3.model.Member;
 import slim3.service.MemberService;
@@ -12,13 +13,13 @@ import slim3.service.MemberService;
 import com.google.appengine.api.datastore.Key;
 
 public class SubmitController extends Controller {
-    
+
     private MemberService svc = new MemberService();
     private MemberMeta meta = new MemberMeta();
 
     @Override
     public Navigation run() throws Exception {
-        
+
         // 入力チェック
         if(!validate()){
 
@@ -31,7 +32,7 @@ public class SubmitController extends Controller {
             try {
                 member.setBirthDay(asDate("birthDay", DateUtil.ISO_DATE_PATTERN));
             } catch (Exception e) {
-                
+
             }
             member.setMailAddress(asString("mailAddress"));
             member.setPart(asString("part"));
@@ -39,7 +40,7 @@ public class SubmitController extends Controller {
             requestScope("member",member);
             return forward("index.jsp");
         }
-        
+
         // 更新社員情報を構築する
         Member updatedMember = getUpdatedMemberFromRequest();
 
@@ -48,11 +49,11 @@ public class SubmitController extends Controller {
 
         // TODO
         // 更新時にエラーが発生したときの考慮
-        
+
         // 画面表示用データをセットする
         requestScope("member", updatedMember);
         updateLoginInfo();
-        
+
         return forward("submit.jsp");
     }
 
@@ -60,27 +61,27 @@ public class SubmitController extends Controller {
      * セッションにあるログイン状態を最新可します。
      */
     protected void updateLoginInfo() {
-        Member loginUser = sessionScope("loginUser");
-        removeSessionScope("loginUser");
-        sessionScope("loginUser", svc.searchFromKey(loginUser.getKey()));
+        Member loginUser = sessionScope(Constants.SESSION_KEY_LOGIN_USER);
+        removeSessionScope(Constants.SESSION_KEY_LOGIN_USER);
+        sessionScope(Constants.SESSION_KEY_LOGIN_USER, svc.searchFromKey(loginUser.getKey()));
     }
 
     /**
      * 更新対象社員情報を構築します。
-     * 
+     *
      * @return 更新対象社員情報
      * @throws IllegalArgumentException 画面入力時のエラー
      */
     private Member getUpdatedMemberFromRequest() throws IllegalArgumentException {
-        
+
         Key key = asKey("key");
-        
+
         if(key == null){
-            throw new IllegalArgumentException("キーが取得できません。");            
+            throw new IllegalArgumentException("キーが取得できません。");
         }
-                
+
         Member member = svc.searchFromKey(asKey("key"));
-        
+
         if(member == null) {
             throw new IllegalArgumentException("keyに対応する団員が存在しません。key:" +  key);
         } else {
@@ -94,13 +95,13 @@ public class SubmitController extends Controller {
             member.setMailAddress(asString("mailAddress"));
             member.setPart(asString("part"));
         }
-        
+
         return member;
     }
-    
+
     /**
      * 画面入力チェックを行ないます。
-     * 
+     *
      * @return チェック結果
      */
     protected boolean validate() {

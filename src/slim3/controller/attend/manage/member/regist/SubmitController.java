@@ -8,34 +8,38 @@ import org.slim3.util.RequestMap;
 
 import slim3.meta.MemberMeta;
 import slim3.model.Member;
+import slim3.service.MemberAuthService;
 import slim3.service.MemberService;
 
 public class SubmitController extends Controller {
 
     private MemberService svc = new MemberService();
     private MemberMeta meta = new MemberMeta();
+    private MemberAuthService authSvc = new MemberAuthService();
 
     @Override
     public Navigation run() throws Exception {
-        
+
         if(!validate()){
             return forward(basePath);
         }
-        
+
         try {
             Member member = svc.regist(new RequestMap(request));
+            authSvc.registAsInitial(member);
+
             requestScope("member", member);
             return forward("submit.jsp");
         } catch (IllegalArgumentException e){
             errors.put("cannotRegist", ApplicationMessage.get("regist.error"));
-            return forward(basePath);    
+            return forward(basePath);
         }
-        
+
     }
-    
+
     /**
      * 画面入力チェックを行ないます。
-     * 
+     *
      * @return チェック結果
      */
     protected boolean validate() {

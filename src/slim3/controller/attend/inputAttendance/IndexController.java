@@ -9,6 +9,7 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.util.DateUtil;
 
+import slim3.constants.Constants;
 import slim3.model.Attendance;
 import slim3.model.Member;
 import slim3.model.Practice;
@@ -24,7 +25,7 @@ public class IndexController extends Controller {
     @Override
     public Navigation run() throws Exception {
 
-        if(sessionScope("loginUser") == null) {
+        if(sessionScope(Constants.SESSION_KEY_LOGIN_USER) == null) {
             // TODO ログインしていないページに飛ばす必要がある
             return forward("/attend/error/");
         }
@@ -104,7 +105,7 @@ public class IndexController extends Controller {
     }
 
     private List<Attendance> ConstructAttendanceList(int year, int month){
-        Member loginUser = sessionScope("loginUser");
+        Member loginUser = sessionScope(Constants.SESSION_KEY_LOGIN_USER);
         if(loginUser == null) {
             // TODO ログインしていない例外を発生させる。
         }
