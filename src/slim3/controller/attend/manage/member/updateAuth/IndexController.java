@@ -17,19 +17,22 @@ public class IndexController extends Controller {
     @Override
     public Navigation run() throws Exception {
 
-        if(asString("id") == null) {
+        String id = asString("id");
+
+        if(id == null) {
             throw new IllegalArgumentException("IDがnullです。");
         }
 
-        Member member = memberService.searchFromId(asString("id"));
+        Member member = memberService.searchFromId(id);
 
         if(member == null) {
-            throw new IllegalArgumentException("権限変更対象のIDが存在しません. ID:" + asString("id"));
+            throw new IllegalArgumentException("権限変更対象のIDが存在しません. ID:" + id);
         }
 
         MemberAuth memberAuth =memberAuthService.searchFromMemberKey(member);
 
         if(memberAuth == null){
+            //権限エンティティがまだ存在しない場合、ここで永続化してしまう。
             memberAuth = new MemberAuth();
             memberAuth.setAttendance(Constants.AUTH_REFER);
             memberAuth.setMember(Constants.AUTH_NOTHING);
@@ -37,7 +40,7 @@ public class IndexController extends Controller {
             memberAuth.setMemberAuth(Constants.AUTH_NOTHING);
             memberAuth.getMemberRef().setModel(member);
 
-            //ここで永続化してしまう。(キーが生成されてくるため、参照を更新)
+            //キーが生成されてくるため、参照を更新
             memberAuth = memberAuthService.regist(memberAuth);
         }
 

@@ -24,7 +24,7 @@
 					<div class="post">
 						<h2>団員権限情報変更</h2>
 						<p>更新情報を入力してください。</p>
-						<p><span class="error">${f:h(errors.inputError)}</span></p>
+						<p><span class="error">${f:h(errors.cannotRegist)}</span></p>
 						<form method="post" action="/attend/manage/member/updateAuth/submit">
 						<input type="hidden" name="memberKey" value="${f:h(memberInfo.key)}" />
 						<input type="hidden" name="memberAuthKey" value="${f:h(memberAuthKey)}" />

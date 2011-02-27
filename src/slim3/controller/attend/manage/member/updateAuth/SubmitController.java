@@ -2,6 +2,8 @@ package slim3.controller.attend.manage.member.updateAuth;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.controller.validator.Validators;
+import org.slim3.util.ApplicationMessage;
 
 import slim3.model.Member;
 import slim3.model.MemberAuth;
@@ -20,6 +22,20 @@ public class SubmitController extends Controller {
 
         Key memberKey = asKey("memberKey");
         Key memberAuthKey = asKey("memberAuthKey");
+
+        if(memberKey == null){
+            throw new IllegalArgumentException("memberKeyがnullです。");
+        }
+
+        if(memberAuthKey == null){
+            throw new IllegalArgumentException("memberAuthKeyがnullです。");
+        }
+
+        if(!validate()){
+            errors.put("cannotRegist", ApplicationMessage.get("memberAuth.required"));
+            return forward("index.jsp");
+        }
+
         // 以下設定された権限情報
         Integer attendance = asInteger("attendance");
         Integer member = asInteger("member");
@@ -45,5 +61,19 @@ public class SubmitController extends Controller {
         requestScope("memberInfo", memberInfo);
 
         return forward("submit.jsp");
+    }
+
+    /**
+     * 画面入力チェックを行ないます。
+     *
+     * @return チェック結果
+     */
+    protected boolean validate() {
+        Validators v = new Validators(request);
+        v.add("attendance", v.required());
+        v.add("member", v.required());
+        v.add("practice", v.required());
+        v.add("memberAuth", v.required());
+        return v.validate();
     }
 }

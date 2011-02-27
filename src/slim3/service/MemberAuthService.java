@@ -26,7 +26,12 @@ public class MemberAuthService {
 
         // 必須情報の確認
         if(memberAuth == null) {
-            throw new IllegalArgumentException("Error! Input attendance is null.");
+            throw new IllegalArgumentException("Error! Input memberAuth is null.");
+        }
+
+        if(memberAuth.getMemberRef().getModel() == null){
+            //メンバーへのリレーションが張られていなければエラー
+            throw new IllegalArgumentException("Error! Input memberAuth's relation to member is null.");
         }
 
         GlobalTransaction gtx = Datastore.beginGlobalTransaction();
