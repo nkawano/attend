@@ -38,18 +38,18 @@
 						<c:if test="${memberList != null}">
 						<table>
 						<tr>
-						<td>ID</td>
-						<td>苗字</td>
-						<td>名前</td>
-						<td></td>
+						<th></th>
+						<th>ID</th>
+						<th class="searchMember-resultTable-name">苗字</th>
+						<th class="searchMember-resultTable-name">名前</th>
 						</tr>
 						</c:if>
 						<c:forEach var="e" items="${memberList}">
 						<tr>
+						<td><input type="radio" name="id" value="${f:h(e.id)}"/></td>
 						<td>${f:h(e.id)}</td>
 						<td>${f:h(e.lastName)}</td>
 						<td>${f:h(e.firstName)}</td>
-						<td><input type="radio" name="id" value="${f:h(e.id)}"/></td>
 						</tr>
 						</c:forEach>
 						</table>

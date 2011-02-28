@@ -489,6 +489,11 @@ input[type="submit"] {
 	margin-bottom: 35px;
 }
 
+th.searchMember-resultTable-name{
+	position: relative;
+	left: 15px;
+}
+
 /* 更新、削除、権限ボタン位置 */
 .searchMember-bottombuttons{
 	margin: 1px 30px 1px 1px;
